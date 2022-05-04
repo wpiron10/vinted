@@ -1,38 +1,142 @@
-.App {
-  text-align: center;
+* {
+  box-sizing: border-box;
+  /* font-family: "Vinted"; */
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
+/* @font-face {
+  font-family: "Vinted";
+  src: url("./assets/fonts/font.woff2") format("woff2");
+} */
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.navbar {
+  height: 10vh;
+  border: 3px red solid;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  width: 100%;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+}
+
+.container {
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  border: 3px purple solid;
+}
+
+/* .container :nth-child(2) {
+  height: vh;
+} */
+
+.logo-content {
+  display: flex;
+  width: 10%;
+  border: 3px blue solid;
+}
+
+.logo {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.btn-content {
+  display: flex;
+  width: 40%;
+  justify-content: space-around;
+  border: 3px blue solid;
+  align-items: center;
+}
+
+.btn-nav {
+  width: 30%;
+  height: 70%;
+  background-color: #2cb1ba;
   color: white;
+  border: 1px solid #2cb1ba;
+  border-radius: 5px;
 }
 
-.App-link {
-  color: #61dafb;
+.btn-content > :not(:last-child) {
+  background-color: white;
+  color: #2cb1ba;
+  border: 1px solid #2cb1ba;
+  border-radius: 5px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.nav {
+  display: flex;
+  width: 100%;
+  border: 3px solid green;
+  justify-content: center;
+}
+.nav > div {
+  justify-content: flex-start;
+}
+
+.nav-link {
+  margin-right: 10px;
+}
+
+.banner-content {
+  width: 100%;
+  height: 70vh;
+  border: 3px solid lightcoral;
+}
+
+.banner {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background-size: cover;
+  background-position: center center;
+  background-image: url("./assets/img/banner.png");
+
+  background-repeat: no-repeat;
+}
+
+.banner-desc {
+  position: relative;
+  top: 10vh;
+
+  background-color: white;
+  width: 410px;
+  height: 270px;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.banner {
+  display: flex;
+  justify-content: center;
+}
+
+.btn-banner {
+  width: 50%;
+  height: 8vh;
+  background-color: #2cb1ba;
+  color: white;
+  border: 1px solid #2cb1ba;
+  border-radius: 5px;
+}
+
+.offers-content {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+
+  flex-wrap: wrap;
+}
+
+.offer-content {
+  display: flex;
+  box-sizing: border-box;
+  height: 30vh;
+  border: 3px solid orange;
+  flex-wrap: wrap;
+  flex: 3;
+}
+
+.offer-img {
+  display: flex;
 }
