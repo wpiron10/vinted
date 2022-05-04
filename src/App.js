@@ -67,6 +67,7 @@ function App() {
               return (
                 <div key={index} className="offer-content">
                   <div>
+                    {offer.product_pictures[0].secure_url}
                     {console.log(offer.product_pictures[0].secure_url, "< url")}
                     <div>{offer.product_details[0].MARQUE}</div>
                   </div>
