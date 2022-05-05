@@ -41,7 +41,7 @@ const Home = () => {
               {data.offers.map((offer, index) => {
                 return (
                   <Link
-                    to={`/offer${offer._id}`}
+                    to={`/offer/${offer._id}`}
                     key={offer._id}
                     className="offer-link"
                   >
