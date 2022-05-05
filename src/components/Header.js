@@ -7,6 +7,12 @@ const Header = () => {
         <div className="logo-content">
           <img className="logo" src={logo} />
         </div>
+        <div>
+          <div className="search-content">
+            {/* <FontAwesomeIcon icon="fa-solid fa-magnifying-glass" /> */}
+            <input className="search-bar" type="text" />
+          </div>
+        </div>
         <div className="btn-content">
           <button className="btn-nav">S'inscrire</button>
           <button className="btn-nav">Se connecter</button>

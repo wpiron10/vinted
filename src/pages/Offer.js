@@ -1,12 +1,46 @@
-import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+// import du package axios
+import { axios } from "axios";
 
 const Offer = () => {
-  return (
+  // const params = useParams();
+  const { id } = useParams();
+
+  // déclaration des states data, isloading
+  const [data, setData] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
+
+  // ajout de useEffect
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await axios.get(
+        `https://lereacteur-vinted-api.herokuapp.com/offer/${id}`
+      );
+      console.log(response.data);
+      setData(response.data);
+      setIsLoading(false);
+    };
+    fetchData();
+  }, [id]);
+
+  return isLoading === true ? (
+    <div>En cours de chargement</div>
+  ) : (
     <div>
+      <h2>{data.product_name}</h2>
+      <span>{data.product_price}</span>
       <div>
-        <Link to="/home"> Go to home </Link>
+        {data.product_details.map((item, index) => {
+          const keys = Object.keys(item);
+
+          return (
+            <div key={index}>
+              {keys[0]} : {item[keys[0]]}
+            </div>
+          );
+        })}
       </div>
-      <div>Hello cest offer</div>
     </div>
   );
 };

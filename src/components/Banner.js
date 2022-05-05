@@ -1,8 +1,8 @@
 const Banner = () => {
   return (
     <div className="banner-content">
-      <div className="banner">
-        <div className="container">
+      <div className="container">
+        <div className="banner">
           <div className="banner-desc">
             <h1>Prêts à faire du tri dans vos placards ?</h1>
             <div>
