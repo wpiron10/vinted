@@ -10,7 +10,8 @@ const Signup = () => {
   const [username, setUsername] = useState();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
-  const [optin, setOptin] = useState(false);
+
+  const [newsletter, setNewsletter] = useState(false);
   const [data, setData] = useState();
   const [isLoading, setIsLoading] = useState();
 
@@ -31,34 +32,39 @@ const Signup = () => {
     setPassword(value);
   };
 
-  const handleOptinChange = (event) => {
+  const handleNewsletterChange = (event) => {
     const value = event.target.checked;
-    setOptin(value);
+    setNewsletter(value);
   };
 
-  // Au submit on envoit les données via une requete post (url, {objet à envoyer})
   const navigate = useNavigate(); // rappel
+  // Au submit on envoit les données via une requete post (url, {objet à envoyer})
+
   const fetchData = async (event) => {
     event.preventDefault(); // Pour empêcher le navigateur de changer de page lors de la soumission du formulaire
+    try {
+      const response = await axios.post(
+        `https://lereacteur-vinted-api.herokuapp.com/user/signup`,
 
-    const response = await axios.post(
-      `https://lereacteur-vinted-api.herokuapp.com/user/signup`,
+        {
+          username: username,
+          email: email,
+          password: password,
+          newsletter: newsletter,
+        }
+      );
+      console.log(response.data);
 
-      {
-        username: username,
-        email: email,
-        password: password,
-        optin: optin,
-      }
-    );
-    console.log(response.data);
-    setData(response.data);
-    setIsLoading(false);
+      setData(response.data);
+      setIsLoading(false);
 
-    navigate("/login");
+      navigate("/login");
 
-    alert("ça marche");
-    console.log(email, password);
+      alert("ça marche");
+      console.log(email, password);
+    } catch (error) {
+      alert("Vos infos sont incorrectes");
+    }
   };
 
   return (
@@ -85,8 +91,7 @@ const Signup = () => {
         <input
           placeholder="S'inscrire à notre newsletter"
           type="checkbox"
-          value={optin}
-          onChange={handleOptinChange}
+          onChange={handleNewsletterChange}
         ></input>
         {/* <p>
           En m'inscrivant je confirme avoir lu et accepté les Termes et

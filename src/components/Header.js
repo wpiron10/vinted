@@ -3,7 +3,25 @@ import logo from "../assets/img/logo.png";
 // import des composants router, routes, route
 import { Link } from "react-router-dom";
 
+// import de cookie
+import Cookies from "js-cookie";
+
 const Header = () => {
+  // const isTokenLoginValid = () => {
+  //   Cookies.get("tokenLogin", data.token);
+  // };
+
+  // const [cookies, setCookies] = useState(false);
+  // useEffect(() => {
+  //   console.log(Cookies.get("token") === true);
+  //   if (Cookies.get("token") !== "") {
+  //     setCookies(true);
+  //   }
+
+  const handleRemoveCookies = () => {
+    return Cookies.remove("tokenLogin");
+  };
+
   return (
     <div className="navbar">
       <div className="container">
@@ -17,11 +35,21 @@ const Header = () => {
           </div>
         </div>
         <div className="btn-content">
-          <Link to="/signup">
-            <button className="btn-nav-1">S'inscrire</button>
-          </Link>
+          {/* {isTokenLoginValid > 0 ? ( */}
+          <button className="btn-nav" onClick={handleRemoveCookies}>
+            Se déconnecter
+          </button>
+          {/* ) : ( */}
+          <div>
+            <Link to="/signup">
+              <button className="btn-nav-1">S'inscrire</button>
+            </Link>
 
-          <button className="btn-nav">Se connecter</button>
+            <Link to="/login">
+              <button className="btn-nav">Se connecter</button>
+            </Link>
+          </div>
+          {/* )} */}
           <button className="btn-nav">Vends tes articles </button>
         </div>
       </div>
