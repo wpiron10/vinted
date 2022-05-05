@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 // import du package axios
-import { axios } from "axios";
+import axios from "axios";
 
 const Offer = () => {
   // const params = useParams();
