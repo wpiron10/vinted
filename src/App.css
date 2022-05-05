@@ -72,6 +72,15 @@
   border-radius: 5px;
 }
 
+.btn-nav-1 {
+  width: 100%;
+  height: 100%;
+  background-color: #2cb1ba;
+  color: white;
+  border: 1px solid #2cb1ba;
+  border-radius: 5px;
+}
+
 .btn-content > :not(:last-child) {
   background-color: white;
   color: #2cb1ba;
@@ -210,4 +219,15 @@
 
 .offer-desc > div {
   width: 100%;
+}
+
+.login-form {
+  display: flex;
+  border: 1px red solid;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  gap: 10px;
+  height: 100vh;
 }
