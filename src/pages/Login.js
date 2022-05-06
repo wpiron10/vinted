@@ -2,14 +2,9 @@ import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
-// import de cookie
-import Cookies from "js-cookie";
-
-const Login = () => {
-  const [isLoading, setIsLoading] = useState(false);
+const Login = ({ setUser }) => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
-  const [data, setData] = useState();
 
   const handleEmailChange = (event) => {
     const value = event.target.value;
@@ -32,25 +27,21 @@ const Login = () => {
           password: password,
         }
       );
-      setData(response.data);
-      setIsLoading(false);
 
-      Cookies.set("tokenLogin", response.data.token);
-      console.log("tokenLogin", "< token login");
       console.log(response.data);
-      navigate("/");
-      alert("vous êtes connecté");
-      console.log(email, password);
+      if (response.data.token) {
+        setUser(response.data.token);
+        // redirection
+        navigate("/");
+      }
     } catch (error) {
-      alert("Vos infos sont incorrectes");
+      console.log(error.message);
     }
   };
 
   const navigate = useNavigate(); // rappel
 
-  return isLoading === true ? (
-    <div>En cours de chargement</div>
-  ) : (
+  return (
     <div>
       <div>
         <p>Veuillez vous connecter</p>

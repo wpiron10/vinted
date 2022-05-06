@@ -6,14 +6,16 @@ import { useNavigate } from "react-router-dom";
 
 // Déclaration des states du form
 
-const Signup = () => {
-  const [username, setUsername] = useState();
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
+const Signup = ({ setUser }) => {
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const [newsletter, setNewsletter] = useState(false);
-  const [data, setData] = useState();
-  const [isLoading, setIsLoading] = useState();
+
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const navigate = useNavigate(); // rappel
 
   // Déclaration des fonctions  du form (onChange, onSubmit)
 
@@ -37,7 +39,6 @@ const Signup = () => {
     setNewsletter(value);
   };
 
-  const navigate = useNavigate(); // rappel
   // Au submit on envoit les données via une requete post (url, {objet à envoyer})
 
   const fetchData = async (event) => {
@@ -54,16 +55,18 @@ const Signup = () => {
         }
       );
       console.log(response.data);
-
-      setData(response.data);
-      setIsLoading(false);
-
+      //ajout dans la state du token
+      setUser(response.data.token);
+      //Rediriger l'utilisateur vers la page login
       navigate("/login");
-
-      alert("ça marche");
-      console.log(email, password);
+      if (response.data) {
+        console.log("Votre compte a été créé");
+      }
     } catch (error) {
-      alert("Vos infos sont incorrectes");
+      console.log(error.response.status);
+      if (error.response.status === 409) {
+        setErrorMessage("Cet email a déjà un compte !");
+      }
     }
   };
 
@@ -93,12 +96,13 @@ const Signup = () => {
           type="checkbox"
           onChange={handleNewsletterChange}
         ></input>
-        {/* <p>
+        <p>
           En m'inscrivant je confirme avoir lu et accepté les Termes et
           Conditions et Politique de Confidentialité de Vinted. Je confirme
           avoir au moins 18 ans.
-        </p> */}
+        </p>
         <input type="submit" value="S'inscrire"></input>
+        <p style={{ color: "red" }}>{errorMessage}</p>
       </form>
     </div>
   );

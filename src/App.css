@@ -32,6 +32,9 @@
   width: 10%;
   border: 3px blue solid;
 }
+button:hover {
+  cursor: pointer;
+}
 
 .logo {
   width: 100%;
@@ -91,6 +94,7 @@
 .nav {
   display: flex;
   width: 100%;
+  height: 5vh;
   border: 3px solid green;
   justify-content: center;
 }
@@ -223,11 +227,43 @@
 
 .login-form {
   display: flex;
-  border: 1px red solid;
+
   align-items: center;
   justify-content: center;
   flex-direction: column;
   width: 100%;
   gap: 10px;
   height: 100vh;
+}
+
+.offer-page {
+  background-color: #f2f2f2;
+  display: flex;
+  width: 100%;
+  height: 90vh;
+  border: 3px red solid;
+  justify-content: center;
+}
+
+.offer-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+
+  width: 100%;
+  gap: 10vh;
+  height: 100%;
+}
+
+.offer-img-product {
+  width: 60vh;
+  height: 75vh;
+}
+
+.offer-desc-product {
+  padding: 20px;
+  background-color: white;
+  border: 1px red solid;
+  width: 60vh;
+  height: 75vh;
 }
