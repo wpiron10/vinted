@@ -58,20 +58,20 @@ const Home = () => {
                       {offer.product_pictures[0] && (
                         <div className="offer">
                           <div className="offer-owner">
-                            {offer.product_pictures[0].secure_url && (
+                            {offer.product_pictures[0] && (
                               <img
                                 className="img-owner"
-                                src={offer.product_pictures[0].secure_url}
+                                src={offer.owner.account.avatar.secure_url}
                               />
                             )}
 
                             <p>{offer.owner.account.username}</p>
                           </div>
                           <div>
-                            {offer.product_pictures[0] ? (
+                            {offer.product_pictures[0].secure_url ? (
                               <img
                                 className="offer-img"
-                                src={offer.owner.account.avatar.secure_url}
+                                src={offer.product_pictures[0].secure_url}
                               />
                             ) : null}
                           </div>

@@ -1,30 +1,33 @@
 import "../App.css";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import axios from "axios";
-const express = require("express");
-const cors = require("cors");
-const app = express();
-app.use(cors());
+import { useNavigate, Navigate } from "react-router-dom";
 
 const Publish = ({ token }) => {
-  const [file, setFile] = useState(null);
-  const [title, setTitle] = useState("Pull noir à capuche Nike");
-  const [description, setDescription] = useState("joli pull de la marque Nike");
+  const [picture, setPicture] = useState(null);
+  const [title, setTitle] = useState("Chaussures noir  Nike");
+  const [description, setDescription] = useState(
+    "jolies shoes de la marque Nike"
+  );
   const [brand, setBrand] = useState("Nike");
-  const [size, setSize] = useState("XL");
+  const [size, setSize] = useState(43);
   const [color, setColor] = useState("noir");
   const [condition, setCondition] = useState("Neuf");
   const [location, setLocation] = useState("Paris");
-  const [price, setPrice] = useState("29");
+  const [price, setPrice] = useState(29);
   const [exchangeOptin, setExchangeOptin] = useState(false);
   // const [isPictureSending, setIsPictureSending] = useState(false);
+  const [data, setData] = useState(null);
+
+  const navigate = useNavigate();
 
   const fetchData = async (event) => {
     event.preventDefault();
     // setIsPictureSending(true);
 
     const formData = new FormData();
-    formData.append("picture", file);
+    formData.append("picture", picture);
+    formData.append("title", title);
     formData.append("description", description);
     formData.append("price", price);
     formData.append("condition", condition);
@@ -34,33 +37,38 @@ const Publish = ({ token }) => {
     formData.append("color", color);
 
     try {
+      console.log(token, "< token");
       const response = await axios.post(
         "https://lereacteur-vinted-api.herokuapp.com/offer/publish",
         formData,
         {
           headers: {
-            Authorization: "Bearer " + token,
+            Authorization: `Bearer ${token}`,
             "Content-Type": "multipart/form-data",
           },
         }
       );
       // setIsPictureSending(false);
-      alert(JSON.stringify(response.data));
+      console.log(response.data);
+      setData(response.data);
+
+      navigate("/offer/" + response.data._id);
+
+      // alert(JSON.stringify(response.data));
     } catch (error) {
       console.log(error.message);
     }
   };
-  return (
+  return token ? (
     <div className="publish-page">
       <div className="container-publish ">
         <form className="publish-form" onSubmit={fetchData}>
           <input
             type="file"
-            value={file}
             onChange={(event) => {
               const value = event.target.files[0];
 
-              setFile(value);
+              setPicture(value);
             }}
           ></input>
           <input
@@ -134,7 +142,8 @@ const Publish = ({ token }) => {
 
               setPrice(value);
             }}
-          ></input>
+          ></input>{" "}
+          <span>Je suis intéressé(e) par les échanges</span>
           <input
             type="checkbox"
             value={exchangeOptin}
@@ -144,11 +153,12 @@ const Publish = ({ token }) => {
               setExchangeOptin(value);
             }}
           ></input>
-
           <input type="submit" value="Ajouter"></input>
         </form>
       </div>
     </div>
+  ) : (
+    <Navigate to="/login" />
   );
 };
 
