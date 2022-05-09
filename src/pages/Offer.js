@@ -17,7 +17,7 @@ const Offer = () => {
       const response = await axios.get(
         `https://lereacteur-vinted-api.herokuapp.com/offer/${id}`
       );
-      console.log(response.data);
+      // console.log(response.data);
       setData(response.data);
       setIsLoading(false);
     };
@@ -37,10 +37,10 @@ const Offer = () => {
             />
           </div>
 
-          <div className="offer-desc-product">
-            <h2>{data.product_name}</h2>
-            <span>{data.product_price} €</span>
-            <div>
+          <div className="offer-content-product ">
+            <h2>{data.product_price} €</h2>
+
+            <div className="offer-desc-product">
               {data.product_details.map((item, index) => {
                 const keys = Object.keys(item);
 
@@ -52,6 +52,22 @@ const Offer = () => {
                   </>
                 );
               })}
+            </div>
+
+            <div>
+              <h3>{data.product_name}</h3>
+              <p>{data.product_description}</p>
+
+              <div className="offer-owner">
+                <img
+                  className="offer-img-owner"
+                  src={data.owner.account.avatar.secure_url}
+                />
+                <p>{data.owner.account.username}</p>
+              </div>
+            </div>
+            <div className="offer-buy">
+              <button className="offer-btn-sell">Acheter</button>
             </div>
           </div>
         </div>

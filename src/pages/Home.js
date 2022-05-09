@@ -5,20 +5,21 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 
 import Banner from "../components/Banner";
+import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
 
 const Home = () => {
   // déclaration des states data, isloading
   const [data, setData] = useState({});
   const [isLoading, setIsLoading] = useState(true);
-
+  const [page, setPage] = useState(1);
   // ajout de useEffect
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "https://lereacteur-vinted-api.herokuapp.com/offers"
+          `https://lereacteur-vinted-api.herokuapp.com/offers?limit=10&page=${page}`
         );
-        console.log(response.data);
+
         setData(response.data);
         setIsLoading(false);
       } catch (error) {
@@ -26,10 +27,18 @@ const Home = () => {
       }
     };
     fetchData();
-  }, []);
+  }, [page]);
 
   return isLoading ? (
-    <span>En cours de chargement...</span>
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <span>En cours de chargement...</span>
+    </div>
   ) : (
     <div>
       <Banner />
@@ -49,13 +58,20 @@ const Home = () => {
                       {offer.product_pictures[0] && (
                         <div className="offer">
                           <div className="offer-owner">
+                            {offer.product_pictures[0].secure_url && (
+                              <img
+                                className="img-owner"
+                                src={offer.product_pictures[0].secure_url}
+                              />
+                            )}
+
                             <p>{offer.owner.account.username}</p>
                           </div>
                           <div>
                             {offer.product_pictures[0] ? (
                               <img
                                 className="offer-img"
-                                src={offer.product_pictures[0].secure_url}
+                                src={offer.owner.account.avatar.secure_url}
                               />
                             ) : null}
                           </div>
@@ -75,6 +91,30 @@ const Home = () => {
                 );
               })}
             </div>
+          </div>
+        </div>
+        <div className="pagination-content">
+          <div className="container">
+            {page > 1 && (
+              <button
+                className="btn-paginate"
+                onClick={() => {
+                  setPage(page - 1);
+                }}
+              >
+                Page précédente
+              </button>
+            )}
+            {page < 4 && (
+              <button
+                className="btn-paginate"
+                onClick={() => {
+                  setPage(page + 1);
+                }}
+              >
+                Page suivante
+              </button>
+            )}
           </div>
         </div>
       </div>
