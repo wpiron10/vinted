@@ -1,3 +1,5 @@
+import "./Signup.css";
+
 // import du useState
 
 import axios from "axios";
@@ -72,7 +74,7 @@ const Signup = ({ setUser }) => {
 
   return (
     <div>
-      <form className="login-form" onSubmit={fetchData}>
+      <form onSubmit={fetchData} className="login-form">
         <input
           placeholder="Nom d'utilisateur"
           onChange={handleUsernameChange}

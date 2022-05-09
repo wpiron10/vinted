@@ -6,14 +6,14 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Cookies from "js-cookie";
 
 // import des pages
-import Home from "./pages/Home";
-import Offer from "./pages/Offer";
-import Login from "./pages/Login";
-import Publish from "./pages/Publish";
+import Home from "./pages/Home/Home";
+import Offer from "./pages/Offer/Offer";
+import Login from "./pages/Login/Login";
+import Publish from "./pages/Publish/Publish";
 
 // import des components
-import Header from "./components/Header";
-import Signup from "./pages/Signup";
+import Header from "./components/Header/Header";
+import Signup from "./pages/Signup/Signup";
 import { useState } from "react";
 
 import { library } from "@fortawesome/fontawesome-svg-core";

@@ -1,10 +1,12 @@
+import "./Home.css";
+
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 // import du package axios
 import axios from "axios";
 
-import Banner from "../components/Banner";
+import Banner from "../../components/Banner/Banner";
 import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
 
 const Home = () => {

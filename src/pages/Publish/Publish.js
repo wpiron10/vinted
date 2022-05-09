@@ -1,4 +1,4 @@
-import "../App.css";
+import "./Publish.css";
 import React, { useState, useCallback } from "react";
 import axios from "axios";
 import { useNavigate, Navigate } from "react-router-dom";
@@ -64,14 +64,14 @@ const Publish = ({ token }) => {
     <div className="publish-page">
       <div className="container-publish ">
         <form className="publish-form" onSubmit={fetchData}>
-          {/* <input
+          <input
             type="file"
             onChange={(event) => {
               const value = event.target.files[0];
 
               setPicture(value);
             }}
-          ></input> */}
+          ></input>
           <input
             type="text"
             value={title}

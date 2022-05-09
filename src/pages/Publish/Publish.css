@@ -1,0 +1,28 @@
+button:hover {
+  cursor: pointer;
+}
+
+.publish-page {
+  display: flex;
+  justify-content: center;
+  height: 80vh;
+}
+
+.container-publish {
+  display: flex;
+  justify-content: center;
+  width: 85%;
+  border: 2px purple solid;
+}
+
+.publish-form {
+  display: flex;
+  height: 90%;
+  width: 60%;
+  border: 3px red solid;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}

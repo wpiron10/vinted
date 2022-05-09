@@ -1,4 +1,5 @@
-import logo from "../assets/img/logo.png";
+import "../Header/Header.css";
+import logo from "../../assets/img/logo.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 import { Range } from "react-range";

@@ -1,3 +1,5 @@
+import "./Login.css";
+
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -45,7 +47,6 @@ const Login = ({ setUser }) => {
     <div>
       <div>
         <p>Veuillez vous connecter</p>
-        <Link to="/signup"> Pas encore de compte ? Inscris-toi ! </Link>
       </div>
       <form className="login-form" onSubmit={fetchData}>
         <input
@@ -62,6 +63,7 @@ const Login = ({ setUser }) => {
         ></input>
         <input type="submit" value="Se connecter"></input>
       </form>
+      <Link to="/signup"> Pas encore de compte ? Inscris-toi ! </Link>
     </div>
   );
 };
