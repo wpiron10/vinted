@@ -1,7 +1,8 @@
 import "../App.css";
-import { useState } from "react";
+import React, { useState, useCallback } from "react";
 import axios from "axios";
 import { useNavigate, Navigate } from "react-router-dom";
+import Dropzone from "react-dropzone";
 
 const Publish = ({ token }) => {
   const [picture, setPicture] = useState(null);
@@ -16,7 +17,7 @@ const Publish = ({ token }) => {
   const [location, setLocation] = useState("Paris");
   const [price, setPrice] = useState(29);
   const [exchangeOptin, setExchangeOptin] = useState(false);
-  // const [isPictureSending, setIsPictureSending] = useState(false);
+
   const [data, setData] = useState(null);
 
   const navigate = useNavigate();
@@ -63,14 +64,14 @@ const Publish = ({ token }) => {
     <div className="publish-page">
       <div className="container-publish ">
         <form className="publish-form" onSubmit={fetchData}>
-          <input
+          {/* <input
             type="file"
             onChange={(event) => {
               const value = event.target.files[0];
 
               setPicture(value);
             }}
-          ></input>
+          ></input> */}
           <input
             type="text"
             value={title}
