@@ -14,15 +14,21 @@ const Home = () => {
   const [data, setData] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(10);
+  console.log(limit);
 
   // ajout de useEffect
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `https://lereacteur-vinted-api.herokuapp.com/offers?limit=10&page=${page}`
+          `https://lereacteur-vinted-api.herokuapp.com/offers?limit=${limit}&page=${page}`
         );
 
+        // (
+        //   `https://deliveroo-exo-backend.herokuapp.com/offers`
+        // );
+        console.log(response.data);
         setData(response.data);
         setIsLoading(false);
       } catch (error) {
@@ -30,7 +36,7 @@ const Home = () => {
       }
     };
     fetchData();
-  }, [page]);
+  }, [page, limit]);
 
   return isLoading ? (
     <div
@@ -61,7 +67,7 @@ const Home = () => {
                       {offer.product_pictures[0] && (
                         <div className="offer">
                           <div className="offer-owner">
-                            {offer.product_pictures[0] && (
+                            {offer.owner.account.avatar.secure_url && (
                               <img
                                 className="img-owner"
                                 src={offer.owner.account.avatar.secure_url}
@@ -71,12 +77,18 @@ const Home = () => {
                             <p>{offer.owner.account.username}</p>
                           </div>
                           <div>
-                            {offer.product_pictures[0].secure_url ? (
+                            {offer.product_image.secure_url && (
                               <img
                                 className="offer-img"
-                                src={offer.product_pictures[0].secure_url}
+                                // src={offer.product_pictures[0].secure_url}
+                                src={offer.product_image.secure_url}
                               />
-                            ) : null}
+                            )}
+
+                            {/* {console.log(
+                              data.offers[index].product_image[0].secure_url,
+                              "img "
+                            )} */}
                           </div>
                           <div className="offer-desc">
                             <div> {offer.product_price} €</div>
@@ -108,16 +120,17 @@ const Home = () => {
                 Page précédente
               </button>
             )}
-            {page < 4 && (
-              <button
-                className="btn-paginate"
-                onClick={() => {
-                  setPage(page + 1);
-                }}
-              >
-                Page suivante
-              </button>
-            )}
+            <p>{page}</p>
+            {/* {limit === data.offers && ( */}
+            <button
+              className="btn-paginate"
+              onClick={() => {
+                setPage(page + 1);
+              }}
+            >
+              Page suivante
+            </button>
+            {/* )} */}
           </div>
         </div>
       </div>

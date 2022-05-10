@@ -17,8 +17,8 @@ button:hover {
 
 .publish-form {
   display: flex;
-  height: 90%;
-  width: 60%;
+  height: 85%;
+  width: 70%;
   border: 3px red solid;
   flex-wrap: wrap;
   flex-direction: column;

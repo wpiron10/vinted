@@ -17,7 +17,7 @@ const Publish = ({ token }) => {
   const [location, setLocation] = useState("Paris");
   const [price, setPrice] = useState(29);
   const [exchangeOptin, setExchangeOptin] = useState(false);
-
+  const [preview, setPreview] = useState(null);
   const [data, setData] = useState(null);
 
   const navigate = useNavigate();
@@ -70,8 +70,10 @@ const Publish = ({ token }) => {
               const value = event.target.files[0];
 
               setPicture(value);
+              setPreview(URL.createObjectURL(event.target.files[0]));
             }}
           ></input>
+          <img src={preview} />
           <input
             type="text"
             value={title}
