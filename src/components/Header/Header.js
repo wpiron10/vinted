@@ -1,14 +1,17 @@
 import "../Header/Header.css";
 import logo from "../../assets/img/logo.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useState } from "react";
+// import de cookie
+import Cookies from "js-cookie";
+import { useLocation } from "react-router-dom";
+
 import { Range } from "react-range";
 // import des composants router, routes, route
 import { Link, useNavigate } from "react-router-dom";
 
-const Header = ({ token, setUser }) => {
-  // state = { values: [50] };
-  const [values, setValues] = useState([50, 700]);
+const Header = ({ token, setUser, values, setValues }) => {
+  //location
+  const location = useLocation();
 
   const navigate = useNavigate();
   const handleRemoveCookies = () => {
@@ -35,45 +38,47 @@ const Header = ({ token, setUser }) => {
               type="text"
             />
           </div>
-          <div className="filters">
-            <div className="navbar-toggle-price">Trier par prix : </div>
-            <Range
-              step={1}
-              min={0}
-              max={1000}
-              values={values}
-              onChange={(values) => {
-                console.log(values);
-                setValues(values);
-              }}
-              renderTrack={({ props, children }) => {
-                // console.log(props);
-                return (
-                  <>
-                    <div className="navbar-texte-range">Prix entre :</div>
-                    <div className="navbar-range ">
-                      <div className="navbar-range-filter " {...props}>
-                        {children}
+          {location.pathname === "/" && (
+            <div className="filters">
+              <div className="navbar-toggle-price">Trier par prix : </div>
+              <Range
+                step={5}
+                min={0}
+                max={500}
+                values={values}
+                onChange={(values) => {
+                  console.log(values);
+                  setValues(values);
+                }}
+                renderTrack={({ props, children }) => {
+                  // console.log(props);
+                  return (
+                    <>
+                      <div className="navbar-texte-range">Prix entre :</div>
+                      <div className="navbar-range ">
+                        <div className="navbar-range-filter " {...props}>
+                          {children}
+                        </div>
                       </div>
-                    </div>
-                  </>
-                );
-              }}
-              renderThumb={({ props }) => (
-                <div
-                  {...props}
-                  style={{
-                    ...props.style,
-                    height: "20px",
-                    width: "20px",
-                    backgroundColor: "#2cb1ba",
-                    borderRadius: "50%",
-                    border: "1px white solid",
-                  }}
-                />
-              )}
-            />
-          </div>
+                    </>
+                  );
+                }}
+                renderThumb={({ props }) => (
+                  <div
+                    {...props}
+                    style={{
+                      ...props.style,
+                      height: "20px",
+                      width: "20px",
+                      backgroundColor: "#2cb1ba",
+                      borderRadius: "50%",
+                      border: "1px white solid",
+                    }}
+                  />
+                )}
+              />
+            </div>
+          )}
         </div>
 
         <div className="btn-content">

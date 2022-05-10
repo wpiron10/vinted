@@ -1,0 +1,15 @@
+.main-payment-forms {
+  display: flex;
+  justify-content: center;
+}
+
+.payment-forms {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-wrap: wrap;
+  height: 80vh;
+  width: 30%;
+  border: 3px red solid !important;
+  padding: 20px;
+}
